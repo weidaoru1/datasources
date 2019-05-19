@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/common :: common"></div>
+    <title>Title</title>
+</head>
+<body>
+<div style="height: 800px;margin-left: 20px;margin-top: 35px; margin-right: 20px;">
+    <h2 style="text-align: center;">欢迎进入首页！！！</h2><br>
+    <a href="/user/userList">测试</a>
+    <div class="col-sm-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>关于Batatas</h5>
+            </div>
+            <div class="ibox-content">
+                <p>batatas具有以下特点：</p>
+                <ol>
+                    <li><a href="${pageContext.request.contextPath}/pub/menu/socket">socket</a>完全响应式布局（支持电脑、平板、手机等所有主流设备）</li>
+                    <li><a href="${pageContext.request.contextPath}/pub/menu/indexTest">新页面测试</a>基于最新版本的Bootstrap 3.3.4</li>
+                    <li>采用HTML5 & CSS3</li>
+                    <li>拥有良好的代码结构</li>
+                    <li>通用的分页插件以及强大的通过Mapper</li>
+                    <li>强大的POI的支持工具</li>
+                    <li>最大程度减少程序猿的代码搬运,让您只需要关注处理业务</li>
+                    <li style="color: red">完全免费开源,不会记录开发者任何信息</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>联系信息</h5>
+            </div>
+            <div class="ibox-content">
+                <p>
+                    <i class="fa fa-qq"></i> QQ：<a
+                        href="http://wpa.qq.com/msgrd?v=3&uin=281009448&site=qq&menu=yes"
+                        target="_blank">281009448</a>
+                </p>
+                <p>
+                    <i class="fa fa-weixin"></i> 微信：<a href="javascript:;">wxxdong2102</a>
+                </p>
+                <p>
+                    <i class="fa fa-credit-card"></i> 支付宝：<a href="javascript:;"
+                                                             class="支付宝信息"> 18883285354 向东</a>
+                </p>
+                <hr>
+                <p>
+                    如果需要赞助Batatas，可直接付款到支付宝：<a href="javascript:void(0);">18883285354</a>，
+                    收款人：<a href="javascript:void(0);">向东</a>。
+                </p>
+                <div class="alert alert-warning">
+                    付款完成后请及时联系作者，或在付款备注中留下邮箱或QQ，方便作者及时联系您。</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>REDEME</h5>
+            </div>
+            <div class="ibox-content">
+                <p>
+                    如果喜欢batatas，希望获取到源码，请前往我们的官网  <a href="http://www.flyeast.com" target="_blank">www.flyeast.com</a>获取源码
+                    请时常关注我们，因为我们将不定期更新功能修复BUG，您也可以提出您的宝贵 意见或者发现的BUG，
+                    作者将在第一时间处理并且通知到您	，batatas的成长离不开大家的 支持。
+                </p>
+                <ol>
+                    <li>访问 <a href="http://www.flyeast.com" target="_blank">www.flyeast.com</a></li>
+                    <li>点击发现</li>
+                    <li>获取源码 /在线演示</li>
+                    <li style="color: red">获取源码后请先阅读源码中的README 遇到任何问题都可以询问作者</li>
+                    <li style="color: red">技术支持：18883285354</li>
+                    <li style="color: red">QQ交流群：472183948</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

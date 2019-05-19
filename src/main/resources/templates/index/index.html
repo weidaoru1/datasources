@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="common/common :: common"></div>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script  th:src="@{/js/init/index.js}"></script>
+
+    <style>
+        body{background-color: #e7eaec; height: 100%; overflow: hidden}
+    </style>
+    <script>
+        $(document).ready( function() {
+            //给它设置 1 秒的停顿时间，这样折叠效果才有用
+            setTimeout("menuClick()", 500);
+        });
+
+        function menuClick() {
+            var $submenu = $('.submenu');
+            var $mainmenu = $('.mainmenu');
+            $submenu.hide();
+            $submenu.first().delay(400).slideDown(700);
+            $submenu.on('click','li', function() {
+                $submenu.siblings().find('li').removeClass('chosen');
+                $(this).addClass('chosen');
+            });
+            $mainmenu.on('click', 'li', function() {
+                $(this).next('.submenu').slideToggle().siblings('.submenu').slideUp();
+            });
+            $mainmenu.children('li:last-child').on('click', function() {
+                $mainmenu.fadeOut().delay(500).fadeIn();
+            });
+        }
+    </script>
+    <script>
+        function menuOpen(url,name,index) {
+
+            if(void 0 == url){
+                return false;
+            }
+            var isopen = false;
+            $(".J_menuTab").each(function(){
+                if($(this).data("id") == url ){
+                    isopen = true;
+                    // 已打开面板
+                    if(!$(this).hasClass("active")){
+                        $(this).addClass("active").siblings(".J_menuTab").removeClass("active");
+                        e(this);// 初始化位置
+                        $(".J_mainContent .J_box").each(function(){
+                            var $this = $(this);
+                            if($this.data("id") == url){
+                                $this.show().siblings(".J_box").hide();
+                            }
+                        });
+                    }
+                }
+            });
+            if(!isopen){
+                var s = '<a href="javascript:;" style=\"float: left\" class="active J_menuTab smartmenu" data-id="' + url + '">' + name + ' <i class="fa fa-times-circle"></i></a>';
+                $(".J_menuTab").removeClass("active");
+                $(".J_menuTabs .page-tabs-content").append(s);
+                e($(".J_menuTab.active"));
+                var r = "<div class=\"J_box smartmenu index\"  name=\"iframe0\" data-id=\""+ url+"\">";
+                r += " <iframe id=\"iframepage"+index+"\" src=\""+url+"\" style=\"width: 100%;overflow:auto;height:600px;\" frameborder=\"0\"></iframe></div>";
+                $(".J_mainContent").find("div.J_box").hide().parents(".J_mainContent").append(r);
+            }
+            return !1;
+        }
+        function t(t) {
+            var e = 0;
+            return $(t).each(function() {
+                e += $(this).outerWidth(!0)
+            }), e
+        }
+        function e(e) {
+            var a = t($(e).prevAll()),
+                i = t($(e).nextAll()),
+                n = t($(".content-tabs").children().not(".J_menuTabs")),
+                s = $(".content-tabs").outerWidth(!0)-n,
+                r = 0;
+            if ($(".page-tabs-content").outerWidth() < s) r = 0;
+            else if (i <= s - $(e).outerWidth(!0) - $(e).next().outerWidth(!0)) {
+                if (s - $(e).next().outerWidth(!0) > i) {
+                    r = a;
+                    for (var o = e; r - $(o).outerWidth() > $(".page-tabs-content").outerWidth() - s;) r -= $(o).prev().outerWidth(), o = $(o).prev()
+                }
+            } else a > s - $(e).outerWidth(!0) - $(e).prev().outerWidth(!0) && (r = a - $(e).prev().outerWidth(!0));
+            $(".page-tabs-content").animate({
+                // marginLeft: 0 - r + "px"
+                marginLeft: 20 + "px"
+            }, "fast")
+        }
+    </script>
+</head>
+<body>
+    <div class="topbar" style="height: 40px;">
+    </div>
+
+    <div>
+        <div style="float: left;width: 15%;height: 618px;background-color: #e4644b;border-radius: 7px 7px 0 0;" id="menuId">
+
+        </div>
+        <!-- height: 614px;  -->
+        <div style="float: left; width: 85%;border-radius: 7px 7px 0 0;">
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft">
+                    <i class="fa fa-backward"></i>
+                </button>
+
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:void(0);" class="J_menuTab active main" id="main" data-id="main">首页</a>
+                    </div>
+                </nav>
+                <button style="margin-right: 20px;" class="roll-nav roll-right J_tabRight">
+                    <i class="fa fa-forward"></i>
+                </button>
+
+            </div>
+            <div class="row J_mainContent bbg" id="content-main" style="margin-right: 0px;overflow:auto;">
+                <div class="J_box smartmenu index"  name="iframe0" data-id="main" id="indexId">
+                    <!--<iframe  id="iframepage" name="iframepage" width="100%" frameborder="0" onLoad="iFrameHeight('iframepage')" th:src="@{'/main'}"></iframe>-->
+                    <iframe  id="iframepage" name="iframepage" height="600px;" width="100%" th:src="@{'/main'}"></iframe>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

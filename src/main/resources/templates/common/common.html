@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="common">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/animate.min.css}"/>
+    <script  th:src="@{/js/jquery.2.2.4.min.js}"></script>
+    <script  th:src="@{/js/bootstrap.min.js}"></script>
+    <script  th:src="@{/js/bootbox.js}"></script>
+    <script  th:src="@{/js/init/jquery.slimscroll.min.js}"></script>
+    <script  th:src="@{/js/init/layer.js}"></script>
+    <script>
+        function queryParams(params) {
+            var pageSize = params.limit;
+            var sort = params.sort;
+            var offset = params.offset;
+            var order = params.order;
+            var pageNum = offset / pageSize + 1;
+            return {
+                pageSize : pageSize,
+                pageNum : pageNum,
+                sort : sort,
+                order : order
+            }
+        }
+        function responseHandler(res) {
+            return {
+                "rows" : res.list,
+                "total" : res.total
+            }
+        }
+    </script>
+    <script  th:src="@{/js/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script  th:src="@{/js/bootstrap-table/bootstrap-table-mobile.min.js}"></script>
+</div>
+</body>
+</html>
